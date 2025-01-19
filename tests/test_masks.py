@@ -8,7 +8,7 @@ def test_mask_card_number(number):
 
 
 def test_mask_card_number_error_input():
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError):
         get_mask_card_number("700079q22896063")
 
 
@@ -17,5 +17,5 @@ def test_mask_account(mask_account):
 
 
 def test_mask_account_error_input():
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError):
         get_mask_account("73654s10843013587430")

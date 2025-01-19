@@ -15,4 +15,3 @@ def card_number_generator(start, stop):
     for number in range(start, stop + 1):
         format_number = f"{number:016d}"
         yield f"{format_number[:4]} {format_number[4:8]} {format_number[8:12]} {format_number[12:16]}"
-
