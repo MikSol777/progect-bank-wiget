@@ -17,6 +17,10 @@
 8. **`transaction_descriptions`** - Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди
 9. **`card_number_generator`** - Выдает номера банковских карт в формате XXXX XXXX XXXX XXXX
 Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999
+10. **`get_date`** - Возвращает строку с датой в формате 'ДД.ММ.ГГГГ'
+
+## Реализованные декораторы
+1. **`log`** -_Логирует выполнения функции, а также ее результаты или возникшие ошибки_
 
 ## Тесты проекта
 Добавлено тестирование функций через pytest.
@@ -33,7 +37,10 @@ src\widget.py	        get_date	            8                   0           	0   
 src\generators.py	filter_by_currency	    2           	0	        0	                100%
 src\generators.py	transaction_descriptions    2           	0	        0	                100%
 src\generators.py	card_number_generator	    3               	0	        0	                100%
-Total	 	                                    39              	0	        0                       100%
+src\decorators.py	log	                    3	                0               0	                100%
+src\decorators.py	log.decorator               2 	            	0       	0	                100%
+src\decorators.py	log.decorator.inner	    12	                0	        0   	                100%
+Total	 	                                    58              	0	        0                       100%
 ~~~~
 
 
