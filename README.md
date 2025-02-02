@@ -17,7 +17,7 @@
 8. **`transaction_descriptions`** - Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди
 9. **`card_number_generator`** - Выдает номера банковских карт в формате XXXX XXXX XXXX XXXX
 Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999
-10. **`get_json_transaction`** - принимает на вход транзакцию и возвращает сумму транзакций (amount) в рублях, тип данных — float
+10. **`get_json_transaction`** - принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях, тип данных — float
 11. **`path_to_json`** - принимает на вход путь до JSON-файла (../data/operations.json) и возвращает список словарей с данными о финансовых транзакциях.
 Если файл пустой, содержит не список или не найден, функция возвращает пустой список.
 
@@ -42,9 +42,9 @@ src\generators.py	card_number_generator	    3               	0	        0	       
 src\decorators.py	log	                    3	                0               0	                100%
 src\decorators.py	log.decorator               2 	            	0       	0	                100%
 src\decorators.py	log.decorator.inner	    12	                0	        0   	                100%
-src\external_api.py	get_json_transaction	    25	                2	        0                       92%
+src\external_api.py	get_json_transaction	    18	                0	        0                       100%
 src\utils.py    	path_to_json	            6           	0       	0           	        100%
-Total	 	                                    95              	2	        0                       98%
+Total	 	                                    89              	0	        0                       100%
 ~~~~
 
 

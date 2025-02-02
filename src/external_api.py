@@ -1,58 +1,42 @@
-import requests
 import os
+import requests
 from dotenv import load_dotenv
 
 
-def get_json_transaction(transactions):
-    """принимает на вход транзакцию и возвращает сумму транзакций (amount) в рублях, тип данных — float"""
-    usd_sum = sum(
-        [
-            float(i["operationAmount"]["amount"])
-            for i in transactions
-            if i.get("operationAmount") and i["operationAmount"]["currency"]["code"] == "USD"
-        ]
-    )
-    eur_sum = sum(
-        [
-            float(i["operationAmount"]["amount"])
-            for i in transactions
-            if i.get("operationAmount") and i["operationAmount"]["currency"]["code"] == "EUR"
-        ]
-    )
-    rub_sum = sum(
-        [
-            float(i["operationAmount"]["amount"])
-            for i in transactions
-            if i.get("operationAmount") and i["operationAmount"]["currency"]["code"] == "RUB"
-        ]
-    )
-
+def get_json_transaction(transaction):
+    """Принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях, тип данных — float"""
     load_dotenv()
-    API_KEY = os.getenv("API_KEY")
+    api_key = os.getenv("API_KEY")
 
-    url_usd = f"https://api.apilayer.com/exchangerates_data/convert?to={'RUB'}&from={'USD'}&amount={usd_sum}"
-    url_eur = f"https://api.apilayer.com/exchangerates_data/convert?to={'RUB'}&from={'EUR'}&amount={eur_sum}"
-    headers = {"apikey": API_KEY}
+    if not transaction.get("operationAmount"):
+        return "Ошибка: Нет данных о сумме транзакции"
 
-    convert_usd = 0
-    convert_eur = 0
+    amount = transaction["operationAmount"]["amount"]
+    currency = transaction["operationAmount"]["currency"]["code"]
 
-    if usd_sum > 0:
-        response_usd = requests.get(url_usd, headers=headers)
-        status_code_usd = response_usd.status_code
-        if status_code_usd == 200:
-            result = response_usd.json()
-            convert_usd = result.get("result")
+    if currency == "RUB":
+        return float(amount)
+    elif currency in ["USD", "EUR"]:
+        url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}"
+        headers = {"apikey": api_key}
+        response = requests.request("GET", url, headers=headers)
+
+        if response.status_code == 200:
+            json_result = response.json()
+            currency_amount = json_result["result"]
+            return currency_amount
         else:
-            print("Ошибка при запросе USD:", response_usd.text)
+            return f"Ошибка при запросе курса для {currency}: {response.text}"
+    else:
+        return "Неизвестная валюта"
 
-    if eur_sum > 0:
-        response_eur = requests.get(url_eur, headers=headers)
-        status_code_eur = response_eur.status_code
-        if status_code_eur == 200:
-            result = response_eur.json()
-            convert_eur = result.get("result")
-        else:
-            print("Ошибка при запросе EUR:", response_eur.text)
 
-    return rub_sum + convert_usd + convert_eur
+print(get_json_transaction({"id": 441945886,
+    "state": "EXECUTED",
+    "date": "2019-08-26T10:50:58.294041",
+    "operationAmount": {
+        "amount": "31957.58",
+        "currency": {
+            "name": "руб.",
+            "code": "USD"
+        }}}))
