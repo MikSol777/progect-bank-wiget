@@ -27,6 +27,10 @@
 ## Тесты проекта
 Добавлено тестирование функций через pytest.
 
+## Логгеры модулей в проекте
+1. **`masks`**
+2. **`utils`**
+
 
 ~~~
 File        	        function        	statements	        missing     	excluded	      coverage
