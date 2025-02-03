@@ -1,6 +1,7 @@
 def filter_by_currency(transactions, currency):
     """Принимает на вход список словарей, представляющих транзакции.
-    Возвращает итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной (например, USD)
+    Возвращает итератор, который поочередно выдает транзакции, где валюта операции
+    соответствует заданной (например, USD)
     """
     new_list_transactions = list(filter(lambda x: x["operationAmount"]["currency"]["code"] == currency, transactions))
     return iter(new_list_transactions)

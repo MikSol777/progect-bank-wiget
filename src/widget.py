@@ -15,8 +15,8 @@ def get_date(date: str) -> str:
     list_date = date.split("-")
     if len(list_date[0]) != 4 or len(list_date[1]) != 2:
         raise ValueError("Неверный формат даты")
-    if list_date[0].isdigit() == False or list_date[1].isdigit() == False or list_date[2][0:2].isdigit() == False:
+    if list_date[0].isdigit() is False or list_date[1].isdigit() is False or list_date[2][0:2].isdigit() is False:
         raise ValueError("Неверный формат даты")
-    if int(list_date[2][0:2]) > 31 or int(list_date[2][0:2]) <= 0 or int(list_date[1]) > 12 or int(list_date[1]) <=0:
+    if int(list_date[2][0:2]) > 31 or int(list_date[2][0:2]) <= 0 or int(list_date[1]) > 12 or int(list_date[1]) <= 0:
         raise ValueError("Неверный формат даты")
     return f"{list_date[2][:2]}.{list_date[1]}.{list_date[0]}"

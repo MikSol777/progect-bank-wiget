@@ -7,10 +7,7 @@ def test_get_json_transaction_rub():
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {
-            "amount": "100",
-            "currency": {"code": "RUB"}
-        }
+        "operationAmount": {"amount": "100", "currency": {"code": "RUB"}},
     }
 
     result = get_json_transaction(transaction)
@@ -22,10 +19,7 @@ def test_get_json_transaction_usd_success():
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {
-            "amount": "100",
-            "currency": {"code": "USD"}
-        }
+        "operationAmount": {"amount": "100", "currency": {"code": "USD"}},
     }
 
     mock_response = Mock()
@@ -42,10 +36,7 @@ def test_get_json_transaction_eur_success():
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {
-            "amount": "100",
-            "currency": {"code": "EUR"}
-        }
+        "operationAmount": {"amount": "100", "currency": {"code": "EUR"}},
     }
 
     mock_response = Mock()
@@ -62,10 +53,7 @@ def test_get_json_transaction_usd_error():
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {
-            "amount": "100",
-            "currency": {"code": "USD"}
-        }
+        "operationAmount": {"amount": "100", "currency": {"code": "USD"}},
     }
 
     mock_response = Mock()
@@ -82,10 +70,7 @@ def test_get_json_transaction_eur_error():
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {
-            "amount": "100",
-            "currency": {"code": "EUR"}
-        }
+        "operationAmount": {"amount": "100", "currency": {"code": "EUR"}},
     }
 
     mock_response = Mock()
@@ -102,10 +87,7 @@ def test_get_json_transaction_unknown_currency():
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {
-            "amount": "100",
-            "currency": {"code": "JPY"}
-        }
+        "operationAmount": {"amount": "100", "currency": {"code": "JPY"}},
     }
 
     result = get_json_transaction(transaction)
@@ -113,16 +95,10 @@ def test_get_json_transaction_unknown_currency():
 
 
 def test_get_json_transaction_missing_amount():
-    transaction = {
-        "id": 441945886,
-        "state": "EXECUTED",
-        "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {}
-    }
+    transaction = {"id": 441945886, "state": "EXECUTED", "date": "2019-08-26T10:50:58.294041", "operationAmount": {}}
 
     result = get_json_transaction(transaction)
     assert result == "Ошибка: Нет данных о сумме транзакции"
-
 
 
 def test_get_json_transaction_missing_operation_amount():
@@ -130,7 +106,6 @@ def test_get_json_transaction_missing_operation_amount():
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
-
     }
 
     result = get_json_transaction(transaction)

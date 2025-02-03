@@ -20,9 +20,9 @@ def test_get_date(date):
 
 
 def test_date_len_error():
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError):
         get_date("20241-03-11T02:26:18.671407")
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError):
         get_date("202l-as-11T02:26:18.671407")
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError):
         get_date("2024-03-41T02:26:18.671407")
