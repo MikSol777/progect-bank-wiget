@@ -7,16 +7,15 @@ if not os.path.exists(log_directory):
     os.makedirs(log_directory)
 
 log_file_path = os.path.join(log_directory, "utils.log")
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(),
-        logging.FileHandler(log_file_path, mode="w")
-    ]
-)
-
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+log_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(funcName)s - %(message)s')
+stream_handler = logging.StreamHandler()
+file_handler = logging.FileHandler(log_file_path, mode='w')
+stream_handler.setFormatter(log_formatter)
+file_handler.setFormatter(log_formatter)
+logger.addHandler(stream_handler)
+logger.addHandler(file_handler)
 
 
 def path_to_json(path):

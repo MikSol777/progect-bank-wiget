@@ -1,44 +1,10 @@
-from src.masks import get_mask_card_number
+from src.masks import get_mask_card_number, get_mask_account
+from src.utils import path_to_json
 
-print(get_mask_card_number("7000792289606361"))
 
-from src.masks import get_mask_account
-
-print(get_mask_account("73654108430135874305"))
-
-from src.widget import mask_account_card
-
-print(mask_account_card("Visa Platinum 8990922113665229"))
-
-print(mask_account_card("Счет 73654108430135874305"))
-
-from src.widget import get_date
-
-print(get_date("2024-03-11T02:26:18.671407"))
-
-from src.processing import filter_by_state
-
-print(
-    filter_by_state(
-        [
-            {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-            {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-            {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-            {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-        ]
-    )
-)
-
-from src.processing import sort_by_date
-
-print(
-    sort_by_date(
-        [
-            {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-            {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-            {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-            {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-        ],
-        False,
-    )
-)
+print(get_mask_card_number('1234567890123456'))
+print(get_mask_card_number('1234'))
+content = path_to_json('data/operations.json')
+print(content[:1])
+path_to_json('data/NOT_EXISTS.json')
+print(get_mask_account("12312345645678978912"))
