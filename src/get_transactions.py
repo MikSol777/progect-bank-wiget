@@ -7,7 +7,7 @@ def get_csv(path_csv):
     функция возвращает пустой список."""
     try:
         read_csv = pd.read_csv(path_csv, sep=";").to_dict(orient="records")
-        if list(read_csv):
+        if read_csv:
             return read_csv
         else:
             return []
@@ -21,7 +21,7 @@ def get_xlsx(path_excel):
     функция возвращает пустой список."""
     try:
         read_excel = pd.read_excel(path_excel).to_dict(orient="records")
-        if list(read_excel):
+        if read_excel:
             return read_excel
         else:
             return []

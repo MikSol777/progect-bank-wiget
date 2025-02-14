@@ -3,7 +3,12 @@ def filter_by_currency(transactions, currency):
     Возвращает итератор, который поочередно выдает транзакции, где валюта операции
     соответствует заданной (например, USD)
     """
-    new_list_transactions = list(filter(lambda x: x["operationAmount"]["currency"]["code"] == currency, transactions))
+    new_list_transactions = list(
+        filter(
+            lambda x: x.get("operationAmount") and x["operationAmount"].get("currency", {}).get("code") == currency,
+            transactions,
+        )
+    )
     return iter(new_list_transactions)
 
 

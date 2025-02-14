@@ -1,5 +1,6 @@
-from src.utils import path_to_json
 from unittest.mock import mock_open, patch
+
+from src.utils import path_to_json
 
 
 def test_path_to_json():

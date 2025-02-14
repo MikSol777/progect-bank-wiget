@@ -1,4 +1,5 @@
-from unittest.mock import patch, Mock
+from unittest.mock import Mock, patch
+
 from src.external_api import get_json_transaction
 
 
