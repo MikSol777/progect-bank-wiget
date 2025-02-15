@@ -1,5 +1,5 @@
 import re
-from collections import defaultdict
+from collections import Counter
 
 
 def sort_transaction(transactions: list[dict], re_search: str) -> list[dict]:
@@ -19,7 +19,8 @@ def count_operations_by_category(transactions_list: list[dict], categories: list
     """принимает список словарей с данными о банковских операциях и список категорий операций,
     а возвращает словарь, в котором ключи — это названия категорий, а значения — это количество операций
     в каждой категории."""
-    category_count = defaultdict(int)
+    category_count = Counter({category: 0 for category in categories})
+
     for transaction in transactions_list:
         description = transaction.get("description", "").lower()
         for category in categories:
